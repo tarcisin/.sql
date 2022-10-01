@@ -53,6 +53,56 @@ SELECT * FROM students ORDER BY nivel DESC, serie DESC, nome;
 SELECT nome FROM students WHERE serie LIKE "3%" ORDER BY idade desc LIMIT 3;
 SELECT nome FROM students WHERE serie LIKE "2%" ORDER BY idade LIMIT 3;
 
+ (SELECT nome FROM students WHERE serie LIKE "9º" ORDER BY idade LIMIT 1)
+ UNION
+ (SELECT nome FROM students WHERE serie LIKE "1º" ORDER BY idade LIMIT 1)
+ UNION
+ (SELECT nome FROM students WHERE serie LIKE "2º" ORDER BY idade LIMIT 1)
+ UNION
+ (SELECT nome FROM students WHERE serie LIKE "3º" ORDER BY idade LIMIT 1);
+
+ALTER TABLE students
+ADD bimestre1 FLOAT; 
+
+ALTER TABLE students
+ADD bimestre2 FLOAT; 
+
+ALTER TABLE students
+ADD bimestre3 FLOAT; 
+
+ALTER TABLE students
+ADD bimestre4 FLOAT; 
+
+ALTER TABLE students
+ADD mediaf FLOAT; 
+
+INSERT INTO students (nome, genero, idade, serie, nivel, bimestre1, bimestre2, bimestre3, bimestre4)
+VALUES  ("Antonio","Masculino",18,"3º","Ensino Médio", 1,9,18,5),
+        ("Pammella","Feminino",19,"3º","Ensino Médio", 2,8,19,4),
+        ("Eritrela","Feminino",14,"3º","Ensino Médio", 3,7,14,3),
+        ("Luna","Feminino",18,"3º","Ensino Médio", 4,6,18,2),
+        ("Joaquim","Masculino",17,"2º","Ensino Médio", 5,5,17,1),
+        ("Regina","Feminino",17,"2º","Ensino Médio", 6,4,17,0),
+        ("Harald","Masculino",16,"2º","Ensino Médio", 7,3,16,9),
+        ("Phillyp","Masculino",15,"2º","Ensino Médio", 8,2,15,8),
+        ("Reinaldo","Masculino",16,"1º","Ensino Médio", 9,1,16,7),
+        ("Garibalda","Feminino",15,"1º","Ensino Médio", 1,9,18,6),
+        ("Juvenal","Masculino",15,"1º","Ensino Médio", 2,8,19,5),
+        ("Brigite","Feminino",14,"1º","Ensino Médio", 3,7,14,4),
+        ("Estella","Feminino",13,"9º","Ensino Fundamental", 4,6,18,3),
+        ("Sammuel","Masculino",12,"9º","Ensino Fundamental", 5,5,17,2),
+        ("Debolla","Feminino",11,"9º","Ensino Fundamental", 6,4,17,1),
+        ("Natanael","Masculino",16,"9º","Ensino Fundamental", 7,3,16,0),
+        ("Joaquina","Feminino",14,"9º","Ensino Fundamental", 8,2,15,9),
+        ("Francineida","Feminino",15,"9º","Ensino Fundamental", 9,1,16,8);
+
+UPDATE students
+SET mediaf = (bimestre1 + bimestre2 + bimestre3 + bimestre4) / 4 
+WHERE matricula BETWEEN 1 and 18;
+
+SELECT nome FROM students WHERE matricula % 2 = 0;
+
+
 
 
 
